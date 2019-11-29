@@ -13,8 +13,12 @@ Dimensions.addEventListener('change', dims => {
   dimensions.fullWidth = dims.window.width;
 });
 
-export const bottomTabHeight = 65;
-export const headerHeight = 60;
+export const sizes = {
+  bottomTabHeight: 65,
+  headerHeight: 60,
+  mainContentWidth: '90%',
+  mainContentWidthWithoutPercent: 90,
+};
 
 // GAPS
 
