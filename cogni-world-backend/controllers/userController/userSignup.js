@@ -24,9 +24,9 @@ module.exports = (req, res) => {
       }
       // Create new user
       const newUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
+        firstName: req.body.firstName.toLowerCase(),
+        lastName: req.body.lastName.toLowerCase(),
+        email: req.body.email.toLowerCase(),
         password: req.body.password,
       });
 
