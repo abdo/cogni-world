@@ -29,7 +29,7 @@ module.exports = (req, res) => {
     { $set: newUserinfo },
     { new: true },
   )
-    .then(() => res.json({ success: true }))
+    .then(() => res.status(200).json({ success: true }))
     .catch(err => {
       const message = 'Error checking database';
       return res.status(500).json({ ...err, message });

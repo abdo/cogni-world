@@ -36,14 +36,22 @@ module.exports = (req, res) => {
       // User Matched ✅
 
       // JWT Payload
-      const { token, password, ...loginTokenPayload } = user._doc;
+      const { token, password, ...userInfo } = user._doc;
+
+      const loginTokenPayload = {
+        ...userInfo,
+        isAdmin: keys.adminEmails.includes(userInfo.email),
+      };
+
+      console.log(loginTokenPayload);
 
       // Make JWT
       jwt.sign(
         loginTokenPayload,
         keys.secretOrKey,
         // { expiresIn: 604800 },
-        (err, token) => res.json({ success: true, token: `Bearer ${token}` }),
+        (err, token) =>
+          res.status(200).json({ success: true, token: `Bearer ${token}` }),
       );
     });
   });

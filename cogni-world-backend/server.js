@@ -23,7 +23,7 @@ require('./config/passport')(passport);
 app.use(cors());
 
 // Routes
-app.use('/api/info', (req, res) => res.send('Cogni World App API'));
+app.use('/info', (req, res) => res.send('Cogni World App API'));
 app.use('/api/user', require('./routes/user'));
 
 const port = process.env.PORT || 5000;
