@@ -6,13 +6,14 @@ const passport = require('passport');
 const app = express();
 
 // Models
+require('./models/loadModels');
 
 // BodyParser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DB Connect
-require('./config/dbconnect');
+require('./config/dbConnect');
 
 // Passport Config
 
