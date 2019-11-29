@@ -16,6 +16,8 @@ app.use(bodyParser.json());
 require('./config/dbConnect');
 
 // Passport Config
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 // Cors Middleware
 app.use(cors());
