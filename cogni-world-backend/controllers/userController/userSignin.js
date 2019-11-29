@@ -43,8 +43,6 @@ module.exports = (req, res) => {
         isAdmin: keys.adminEmails.includes(userInfo.email),
       };
 
-      console.log(loginTokenPayload);
-
       // Make JWT
       jwt.sign(
         loginTokenPayload,
