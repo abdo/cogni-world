@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 
 import loadFonts from './assets/fonts/loadFonts';
 import LoadingScreen from './common/components/LoadingScreen';
-import MainTextInput from './common/components/UI/MainTextInput';
 
 // This is the main app, with these configured:
 // 1- Customized fonts loaded
