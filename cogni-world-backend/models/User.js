@@ -6,9 +6,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -30,8 +35,8 @@ const UserSchema = new mongoose.Schema({
     default: false,
   },
   token: {
-    type: Boolean,
-    default: () => randToken.generate(16),
+    type: String,
+    default: () => randToken.generate(32),
   },
   pushNotificationToken: String,
   date: {
