@@ -10,30 +10,28 @@ const MainButton = ({
   children: text,
   style: customStyle,
   ...props
-}) => {
-  return (
-    <Button
-      rounded
-      block={wide}
-      style={{
-        backgroundColor: secondary ? colors.secondary : colors.primary,
-        padding: gaps.sm,
-        maxWidth: dimensions.fullWidth * 0.9,
-        alignSelf: 'center',
-        ...customStyle,
-      }}
-      {...props}
-    >
-      <Text style={{ fontWeight: 'bold' }}>{text}</Text>
-      {isLoading ? (
-        <Spinner
-          color={
+}) => (
+  <Button
+    rounded
+    block={wide}
+    style={{
+      backgroundColor: secondary ? colors.secondary : colors.primary,
+      padding: gaps.sm,
+      maxWidth: dimensions.fullWidth * 0.9,
+      alignSelf: 'center',
+      ...customStyle,
+    }}
+    {...props}
+  >
+    {text ? <Text style={{ fontWeight: 'bold' }}>{text}</Text> : null}
+    {isLoading ? (
+      <Spinner
+        color={
             secondary ? colors.white.toString() : colors.secondary.toString()
           }
-        />
-      ) : null}
-    </Button>
-  );
-};
+      />
+    ) : icon || null}
+  </Button>
+);
 
 export default MainButton;

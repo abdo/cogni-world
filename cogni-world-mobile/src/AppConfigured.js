@@ -1,5 +1,5 @@
-import { Root, Text } from 'native-base';
-import { StyleSheet, View } from 'react-native';
+import { Root } from 'native-base';
+import { StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 
 import loadFonts from './assets/fonts/loadFonts';
