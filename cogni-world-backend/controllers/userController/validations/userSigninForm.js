@@ -2,15 +2,13 @@ const validate = require('validate.js');
 
 module.exports = data => {
   const error =
-    validate.isEmpty(data.firstName) ||
-    validate.isEmpty(data.lastName) ||
-    validate.isEmpty(data.password) ||
     validate.isEmpty(data.email) ||
+    validate.isEmpty(data.password) ||
     validate.single(data.email, { email: true }) ||
     !isCognitevEmail(data.email);
 
   return {
-    message: 'Incorrect form fields',
+    message: 'Incorrect data provided',
     isValid: !error,
   };
 };
