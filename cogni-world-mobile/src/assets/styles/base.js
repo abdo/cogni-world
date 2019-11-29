@@ -55,8 +55,8 @@ export const fontTypes = {
 // COLORS
 
 const primaryColor = Color('#7F63DC');
-const secondaryColor = Color('#F4F2FC');
-const tertiaryColor = Color('#FFB26C');
+const secondaryColor = Color('#FFB26C');
+const tertiaryColor = Color('#F4F2FC');
 const black = Color('#232323');
 const white = Color('#FFFFFF');
 const red = Color('#FC4445');
