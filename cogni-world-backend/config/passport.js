@@ -16,8 +16,21 @@ module.exports = passport => {
       User.findById(jwtPayload._id)
         .then(user => {
           if (user) {
+            const adminUser = {
+              ...user,
+              isAdmin: true,
+            };
+
+            // In case of admin
+            if (keys.adminEmails.includes(user.email)) {
+              return done(null, adminUser);
+            }
+
+            // In case of signed in user
             return done(null, user);
           }
+
+          // In case of not signed in user
           return done(null, false);
         })
         .catch(err => console.log("Could't validate user", err));

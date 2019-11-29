@@ -4,11 +4,15 @@ const mongoose = require('mongoose');
 const User = mongoose.model('user');
 
 module.exports = (req, res) => {
-  console.log(req.user);
-  // if (!req.user.isAdmin) {
-  //   const message = 'You are not authorized';
-  //   return res.status(401).json({message});
-  // }
+  const { params } = req;
+
+  // Operation is allowed if: doer is admin or doer is same user being updated
+  const isSameUser = req.user._id.toString() === params.userId.toString();
+
+  if (!isSameUser && !req.user.isAdmin) {
+    const message = 'You are not allowed to perform this operation';
+    return res.status(401).json({ message });
+  }
 
   const newUserinfo = { ...req.body };
 

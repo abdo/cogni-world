@@ -23,7 +23,6 @@ const onlyAllow = roles => {
     }
 
     const allow = rolesArr.some(role => user[`is${capitalize(role)}`]);
-    console.log('ALLOW', allow);
     if (allow) {
       // Proceed to controller
       return next();
