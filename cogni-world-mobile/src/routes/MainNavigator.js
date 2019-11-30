@@ -14,6 +14,7 @@ const RootStack = createStackNavigator(
     Registration: screens.Registration,
     Signin: screens.Signin,
     Signup: screens.Signup,
+    WaitForValidation: screens.WaitForValidation,
   },
   {
     initialRouteName: 'Registration',

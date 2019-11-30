@@ -40,13 +40,19 @@ export default class Signin extends Component {
   };
 
   onSubmit = () => {
+    const { navigation } = this.props;
     const { formFields } = this.state;
     const errors = validator(formFields);
     if (errors) {
       this.setState({ errors });
     } else {
-      // request
       this.setState({ errors: {} });
+      // request
+
+      // if not verified
+      navigation.replace('WaitForValidation', {
+        firstTime: false,
+      });
     }
   };
 

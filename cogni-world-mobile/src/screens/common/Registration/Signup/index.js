@@ -43,13 +43,17 @@ export default class Signup extends Component {
   };
 
   onSubmit = () => {
+    const { navigation } = this.props;
     const { formFields } = this.state;
     const errors = validator(formFields);
     if (errors) {
       this.setState({ errors });
     } else {
-      // request
       this.setState({ errors: {} });
+      // request
+      navigation.replace('WaitForValidation', {
+        firstTime: true,
+      });
     }
   };
 

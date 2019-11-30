@@ -12,6 +12,7 @@ import Test2 from './tabScreens/admin/test2';
 import Registration from './common/Registration/Main';
 import Signin from './common/Registration/Signin';
 import Signup from './common/Registration/Signup';
+import WaitForValidation from './common/Registration/WaitForValidation';
 
 const screens = {
   UserScreens: { Test3, Test4 },
@@ -19,6 +20,7 @@ const screens = {
   Registration,
   Signin,
   Signup,
+  WaitForValidation,
 };
 
 export default screens;
