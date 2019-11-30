@@ -19,6 +19,8 @@ const IntroSwiper = () => (
   >
     <SwiperFlatList
       autoplay
+      autoplayLoop
+      autoplayDelay={5}
       showPagination
       style={{ width: dimensions.fullWidth * 0.8 }}
     >

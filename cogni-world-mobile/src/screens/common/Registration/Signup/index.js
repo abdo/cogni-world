@@ -22,11 +22,12 @@ export default class Signup extends Component {
         backgroundImagePath={backgroundImg}
         style={{ justifyContent: 'center', alignItems: 'center' }}
       >
-        <MainHeader>Sign Up</MainHeader>
+        <MainHeader style={{ color: colors.white }}>Sign Up</MainHeader>
         <MainTextInput label="Your First Name" />
         <MainTextInput label="Your Last Name" />
         <MainTextInput label="Your Cognitev Email" />
         <MainTextInput label="Your Password" secureTextEntry />
+        <MainTextInput label="Confirm Password" secureTextEntry />
         <MainButton>Sign Up</MainButton>
       </EnhancedView>
     );
