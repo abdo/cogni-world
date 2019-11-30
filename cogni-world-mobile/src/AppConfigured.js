@@ -1,7 +1,7 @@
 import { Root } from 'native-base';
-import { StyleSheet, Text, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
 
+import App from './routes/MainNavigator';
 import loadFonts from './assets/fonts/loadFonts';
 import LoadingScreen from './common/components/LoadingScreen';
 
@@ -10,7 +10,7 @@ import LoadingScreen from './common/components/LoadingScreen';
 // 2- Native Base Root
 // 3- Redux
 
-export default function App() {
+const AppConfigured = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -29,18 +29,10 @@ export default function App() {
 
   return (
     <Root>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <App />
     </Root>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+export default AppConfigured;

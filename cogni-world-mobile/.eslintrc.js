@@ -9,7 +9,7 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
-    'comma-dangle': 'off',
+    'comma-dangle': 1,
     'arrow-parens': 'off',
   },
   globals: {
