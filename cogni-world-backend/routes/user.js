@@ -17,7 +17,7 @@ router.post('/', userController.userSignup);
 // @body   email password
 router.post('/login', userController.userSignin);
 
-// @route  PATCH api/user
+// @route  PATCH api/user/:userId
 // @desc   Edit user info
 // @access Private
 // @body   firstName lastName password email, [..]
@@ -26,5 +26,11 @@ router.patch(
   passport.authenticate('jwt', { session: false }),
   userController.updateUser,
 );
+
+// @route  GET api/user/isRegistered/:email
+// @desc   Get whether or not user is registered
+// @access Public
+// @body
+router.get('/isRegistered/:email', userController.isRegistered);
 
 module.exports = router;
