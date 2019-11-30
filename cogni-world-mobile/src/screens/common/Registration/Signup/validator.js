@@ -1,6 +1,20 @@
 import validate from 'validate.js';
 
 const constraints = {
+  firstName: {
+    presence: { allowEmpty: false, message: 'is required' },
+    length: {
+      minimum: 3,
+      message: 'is too short',
+    },
+  },
+  lastName: {
+    presence: { allowEmpty: false, message: 'is required' },
+    length: {
+      minimum: 3,
+      message: 'is too short',
+    },
+  },
   email: {
     presence: { allowEmpty: false, message: 'is required' },
     email: {
@@ -11,8 +25,12 @@ const constraints = {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       minimum: 8,
-      message: 'is incorrect',
+      message: 'is too short',
     },
+  },
+  passwordConfirmation: {
+    presence: { allowEmpty: false, message: 'is required' },
+    equality: 'password',
   },
 };
 

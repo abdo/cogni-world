@@ -45,6 +45,7 @@ export default class Signin extends Component {
     if (errors) {
       this.setState({ errors });
     } else {
+      // request
       this.setState({ errors: {} });
     }
   };
