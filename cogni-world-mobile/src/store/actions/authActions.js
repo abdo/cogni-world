@@ -1,9 +1,35 @@
+import * as actionTypes from './actionTypes';
+import catchErr from './helpers/catchErr';
 import http, { userAPI } from '../../assets/utils/httpService';
 
-const checkUserHasRegistered = (email, callback) => {
-  http.get(`${userAPI}/isRegistered/${email}`).then(res => {
-    callback(res.data.isRegistered);
+export const checkUserHasRegistered = email =>
+  new Promise((resolve, reject) => {
+    http
+      .get(`${userAPI}/isRegistered/${email}`)
+      .then(res => {
+        resolve(res.data.isRegistered);
+      })
+      .catch(err => {
+        catchErr(err);
+        reject();
+      });
   });
-};
 
-export default checkUserHasRegistered;
+export const userSignup = (userData, callback) => dispatch => {
+  dispatch({
+    type: actionTypes.START_LOADING,
+  });
+  http
+    .post(userAPI, userData)
+    .then(() => {
+      if (typeof callback === 'function') callback();
+    })
+    .catch(err => {
+      catchErr(err);
+    })
+    .finally(() => {
+      dispatch({
+        type: actionTypes.END_LOADING,
+      });
+    });
+};

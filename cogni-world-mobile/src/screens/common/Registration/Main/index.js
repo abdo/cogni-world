@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
+import { checkUserHasRegistered } from '../../../../store/actions/authActions';
 import { colors } from '../../../../assets/styles/base';
-import checkUserHasRegistered from '../../../../store/actions/authActions';
 import EnhancedView from '../../../../common/components/EnhancedView';
 import IntroSwiper from './components/IntroSwiper/Index';
 import MainButton from '../../../../common/components/UI/MainButton';
@@ -37,16 +37,19 @@ export default class Registration extends Component {
         isCheckingUserStatus: true,
         errors: {},
       });
-      checkUserHasRegistered(email, isRegistered => {
-        this.setState({
-          isCheckingUserStatus: false,
+      checkUserHasRegistered(email)
+        .then(isRegistered => {
+          if (isRegistered) {
+            navigation.navigate('Signin', { email });
+          } else {
+            navigation.navigate('Signup', { email });
+          }
+        })
+        .finally(() => {
+          this.setState({
+            isCheckingUserStatus: false,
+          });
         });
-        if (isRegistered) {
-          navigation.navigate('Signin', { email });
-        } else {
-          navigation.navigate('Signup', { email });
-        }
-      });
     }
   };
 

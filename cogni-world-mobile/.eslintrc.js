@@ -13,6 +13,8 @@ module.exports = {
     'comma-dangle': 1,
     'arrow-parens': 'off',
     'no-nested-ternary': 'off',
+    'operator-linebreak': 'off',
+    'implicit-arrow-linebreak':'off',
     'jsx-a11y/accessible-emoji': 'off',
   },
   globals: {

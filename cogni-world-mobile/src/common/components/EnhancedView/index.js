@@ -36,7 +36,17 @@ const EnhancedView = ({
           contentContainerStyle={{ width: '100%', minHeight: '100%' }}
           keyboardShouldPersistTaps="always"
         >
-          <View style={[{ height: '100%', width: '100%' }, style]}>
+          <View
+            style={[
+              {
+                height: '100%',
+                width: '100%',
+                paddingTop: 15,
+                paddingBottom: 15,
+              },
+              style,
+            ]}
+          >
             {children}
           </View>
         </ScrollView>

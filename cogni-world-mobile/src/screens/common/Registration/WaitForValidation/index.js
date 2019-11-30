@@ -36,26 +36,48 @@ export default class WaitForValidation extends Component {
           source={logo}
         />
         {!firstTime ? (
-          <MainText
-            style={{
-              textAlign: 'center',
-              marginBottom: 20,
-              color: colors.white,
-            }}
-          >
-            Please confirm your email in order to be able to sign in.
-          </MainText>
+          <>
+            <MainText
+              style={{
+                textAlign: 'center',
+                marginBottom: 20,
+                color: colors.white,
+              }}
+            >
+              Please confirm your email in order to be able to sign in
+            </MainText>
+            <MainText
+              style={{
+                textAlign: 'center',
+                marginBottom: 20,
+                color: colors.white,
+              }}
+            >
+              Another confirmation message has been send to your email
+            </MainText>
+          </>
         ) : (
-          <MainText style={{ textAlign: 'center', color: colors.white }}>
-            Please confirm your email and then enjoy every bit of
-            <MainText style={{ fontWeight: 'bold' }}> Cogni World</MainText>
-          </MainText>
+          <>
+            <MainText
+              style={{
+                textAlign: 'center',
+                marginBottom: 20,
+                color: colors.white,
+              }}
+            >
+              A confirmation message has already been send to your email
+            </MainText>
+            <MainText
+              style={{
+                textAlign: 'center',
+                color: colors.white,
+              }}
+            >
+              Please confirm your email and then enjoy every bit of
+              <MainText style={{ fontWeight: 'bold' }}> Cogni World</MainText>
+            </MainText>
+          </>
         )}
-        <MainText
-          style={{ textAlign: 'center', marginBottom: 20, color: colors.white }}
-        >
-          A confirmation message has already been send to your email
-        </MainText>
       </EnhancedView>
     );
   }
