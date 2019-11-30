@@ -35,11 +35,11 @@ export default class Registration extends Component {
     } else {
       this.setState({
         isCheckingUserStatus: true,
+        errors: {},
       });
       checkUserHasRegistered(email, isRegistered => {
         this.setState({
           isCheckingUserStatus: false,
-          errors: {},
         });
         if (isRegistered) {
           navigation.navigate('Signin', { email });
@@ -65,7 +65,11 @@ export default class Registration extends Component {
           name="email"
           onChange={this.onChangeInput}
         />
-        <MainButton onPress={this.onAccess} isLoading={isCheckingUserStatus}>
+        <MainButton
+          onPress={this.onAccess}
+          isLoading={isCheckingUserStatus}
+          disabled={isCheckingUserStatus}
+        >
           Access
         </MainButton>
       </EnhancedView>

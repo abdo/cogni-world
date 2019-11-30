@@ -5,6 +5,7 @@ import EnhancedView from '../../../../common/components/EnhancedView';
 import MainButton from '../../../../common/components/UI/MainButton';
 import MainHeader from '../../../../common/components/UI/Text/MainHeader';
 import MainTextInput from '../../../../common/components/UI/MainTextInput';
+import validator from './validator';
 
 const backgroundImg = require('../../../../assets/images/registration-background.png');
 
@@ -19,7 +20,9 @@ export default class Signin extends Component {
   state = {
     formFields: {
       email: '',
+      password: '',
     },
+    errors: {},
   };
 
   componentDidMount() {
@@ -31,8 +34,23 @@ export default class Signin extends Component {
     }
   }
 
-  render() {
+  onChangeInput = (name, value) => {
     const { formFields } = this.state;
+    return this.setState({ formFields: { ...formFields, [name]: value } });
+  };
+
+  onSubmit = () => {
+    const { formFields } = this.state;
+    const errors = validator(formFields);
+    if (errors) {
+      this.setState({ errors });
+    } else {
+      this.setState({ errors: {} });
+    }
+  };
+
+  render() {
+    const { formFields, errors } = this.state;
 
     return (
       <EnhancedView
@@ -40,9 +58,23 @@ export default class Signin extends Component {
         style={{ justifyContent: 'center', alignItems: 'center' }}
       >
         <MainHeader style={{ color: colors.white }}>Sign In</MainHeader>
-        <MainTextInput label="Your Cognitev Email" value={formFields.email} />
-        <MainTextInput label="Your Password" secureTextEntry />
-        <MainButton>Sign In</MainButton>
+        <MainTextInput
+          label="Your Cognitev Email"
+          error={!!errors.email}
+          errorText={errors.email && errors.email[0]}
+          value={formFields.email}
+          name="email"
+          onChange={this.onChangeInput}
+        />
+        <MainTextInput
+          label="Your Password"
+          error={!!errors.password}
+          errorText={errors.password && errors.password[0]}
+          secureTextEntry
+          name="password"
+          onChange={this.onChangeInput}
+        />
+        <MainButton onPress={this.onSubmit}>Sign In</MainButton>
       </EnhancedView>
     );
   }
