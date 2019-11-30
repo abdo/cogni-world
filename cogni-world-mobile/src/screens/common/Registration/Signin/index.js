@@ -16,14 +16,31 @@ export default class Signin extends Component {
     },
   });
 
+  state = {
+    formFields: {
+      email: '',
+    },
+  };
+
+  componentDidMount() {
+    const { navigation } = this.props;
+    const { formFields } = this.state;
+    const email = navigation.getParam('email', '');
+    if (email) {
+      this.setState({ formFields: { ...formFields, email } });
+    }
+  }
+
   render() {
+    const { formFields } = this.state;
+
     return (
       <EnhancedView
         backgroundImagePath={backgroundImg}
         style={{ justifyContent: 'center', alignItems: 'center' }}
       >
         <MainHeader style={{ color: colors.white }}>Sign In</MainHeader>
-        <MainTextInput label="Your Cognitev Email" />
+        <MainTextInput label="Your Cognitev Email" value={formFields.email} />
         <MainTextInput label="Your Password" secureTextEntry />
         <MainButton>Sign In</MainButton>
       </EnhancedView>

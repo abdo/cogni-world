@@ -42,9 +42,9 @@ export default class Registration extends Component {
           errors: {},
         });
         if (isRegistered) {
-          navigation.navigate('Signin');
+          navigation.navigate('Signin', { email });
         } else {
-          navigation.navigate('Signup');
+          navigation.navigate('Signup', { email });
         }
       });
     }

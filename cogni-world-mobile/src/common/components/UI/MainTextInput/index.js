@@ -15,7 +15,11 @@ import React from 'react';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 
 import {
-  sizes, colors, fontSizes, gaps, fontTypes
+  sizes,
+  colors,
+  fontSizes,
+  gaps,
+  fontTypes,
 } from '../../../../assets/styles/base';
 
 const MainTextInput = ({
@@ -109,7 +113,7 @@ const MainTextInput = ({
         iconSize={20}
         iconWidth={40}
         inputPadding={16}
-        inputStyle={{ color: colors.black, fontFamily: fontTypes.main, }}
+        inputStyle={{ color: colors.black, fontFamily: fontTypes.main }}
         keyboardType={keyboardType}
         defaultValue={initialValue}
         style={{
