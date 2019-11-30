@@ -5,11 +5,14 @@ import { fontSizes, fontTypes } from '../../../../../assets/styles/base';
 
 const MainText = ({ style: customStyle, children, ...props }) => (
   <Text
-    style={{ fontSize: fontSizes.msm, fontFamily: fontTypes.main, ...customStyle }}
+    style={{
+      fontSize: fontSizes.msm,
+      fontFamily: fontTypes.main,
+      ...customStyle,
+    }}
     {...props}
   >
     {children}
-
   </Text>
 );
 

@@ -12,6 +12,8 @@ const RootStack = createStackNavigator(
     AdminTab: tabNavigators.AdminTabNavigator,
     UserTab: tabNavigators.UserTabNavigator,
     Registration: screens.Registration,
+    Signin: screens.Signin,
+    Signup: screens.Signup,
   },
   {
     initialRouteName: 'Registration',

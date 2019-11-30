@@ -9,9 +9,11 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
+    'react/state-in-constructor': 'off',
     'comma-dangle': 1,
     'arrow-parens': 'off',
-    "jsx-a11y/accessible-emoji": 'off',
+    'no-nested-ternary': 'off',
+    'jsx-a11y/accessible-emoji': 'off',
   },
   globals: {
     fetch: false,
