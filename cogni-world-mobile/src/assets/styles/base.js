@@ -40,10 +40,11 @@ export const gaps = {
 export const fontSizes = {
   xs: 10,
   sm: 12,
-  msm: 15,
-  md: 18,
+  msm: 16,
+  md: 20,
   lg: 28,
-  xlg: 40,
+  xlg: 30,
+  xxlg: 40,
   huge: 50,
 };
 

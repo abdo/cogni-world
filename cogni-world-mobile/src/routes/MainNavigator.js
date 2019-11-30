@@ -4,15 +4,17 @@ import { Text } from 'react-native';
 import React from 'react';
 
 import { colors } from '../assets/styles/base';
+import screens from '../screens';
 import tabNavigators from './TabNavigators';
 
 const RootStack = createStackNavigator(
   {
     AdminTab: tabNavigators.AdminTabNavigator,
     UserTab: tabNavigators.UserTabNavigator,
+    Registration: screens.Registration,
   },
   {
-    initialRouteName: 'AdminTab',
+    initialRouteName: 'Registration',
 
     defaultNavigationOptions: ({ navigation }) => {
       // --first, we check which screen it is:

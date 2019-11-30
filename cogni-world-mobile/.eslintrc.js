@@ -11,6 +11,7 @@ module.exports = {
     'react/prop-types': 'off',
     'comma-dangle': 1,
     'arrow-parens': 'off',
+    "jsx-a11y/accessible-emoji": 'off',
   },
   globals: {
     fetch: false,

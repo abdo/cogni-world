@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import App from './routes/MainNavigator';
 import loadFonts from './assets/fonts/loadFonts';
-import LoadingScreen from './common/components/LoadingScreen';
+import LoadingScreen from './screens/common/Loading';
 
 // This is the main app, with these configured:
 // 1- Customized fonts loaded
