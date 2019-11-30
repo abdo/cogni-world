@@ -26,7 +26,7 @@ const RootStack = createStackNavigator(
       // values we will modify then return:
       const headerTitle = '';
       let headerRight = '';
-      const headerLeft = '';
+      let headerLeft = '';
       let headerStyle = {
         backgroundColor: colors.primary,
       };
@@ -45,6 +45,8 @@ const RootStack = createStackNavigator(
           backgroundColor: colors.primaryDark,
         };
 
+        headerLeft = null;
+
         if (tabScreen === 'tabScreen1') {
           headerRight = (
             <Text
@@ -62,6 +64,19 @@ const RootStack = createStackNavigator(
         }
 
         // Return these in case of tab screens
+        return {
+          tabBarVisible,
+          headerStyle,
+          headerTitle,
+          headerRight,
+          headerLeft,
+          headerTitleStyle,
+          // and so on..
+        };
+      }
+
+      if (screen === 'UserTab') {
+        headerLeft = null;
         return {
           tabBarVisible,
           headerStyle,

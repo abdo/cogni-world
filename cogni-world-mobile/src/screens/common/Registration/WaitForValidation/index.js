@@ -24,7 +24,12 @@ export default class WaitForValidation extends Component {
     return (
       <EnhancedView
         backgroundImagePath={backgroundImg}
-        style={{ justifyContent: 'center', alignItems: 'center' }}
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '90%',
+          alignSelf: 'center',
+        }}
       >
         {firstTime ? (
           <MainHeader style={{ color: colors.white, marginBottom: 20 }}>

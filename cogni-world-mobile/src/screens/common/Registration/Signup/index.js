@@ -52,13 +52,13 @@ class Signup extends Component {
       this.setState({ errors });
     } else {
       this.setState({ errors: {} });
-      // signup request
       const signupCallback = () => {
         navigation.replace('WaitForValidation', {
           firstTime: true,
         });
       };
 
+      // signup request
       userSignup(formFields, signupCallback);
     }
   };

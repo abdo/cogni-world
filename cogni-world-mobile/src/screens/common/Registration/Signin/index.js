@@ -1,6 +1,8 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import { colors } from '../../../../assets/styles/base';
+import * as AuthActions from '../../../../store/actions/authActions';
 import EnhancedView from '../../../../common/components/EnhancedView';
 import MainButton from '../../../../common/components/UI/MainButton';
 import MainHeader from '../../../../common/components/UI/Text/MainHeader';
@@ -9,7 +11,7 @@ import validator from './validator';
 
 const backgroundImg = require('../../../../assets/images/registration-background.png');
 
-export default class Signin extends Component {
+class Signin extends Component {
   static navigationOptions = () => ({
     headerTransparent: true,
     headerStyle: {
@@ -40,29 +42,40 @@ export default class Signin extends Component {
   };
 
   onSubmit = () => {
-    const { navigation } = this.props;
+    const { navigation, userSignin } = this.props;
     const { formFields } = this.state;
     const errors = validator(formFields);
     if (errors) {
       this.setState({ errors });
     } else {
       this.setState({ errors: {} });
-      // request
 
-      // if not verified
-      navigation.replace('WaitForValidation', {
-        firstTime: false,
-      });
+      const signinCallback = user => {
+        if (!user.verified) {
+          navigation.replace('WaitForValidation', {
+            firstTime: false,
+          });
+        } else if (user.isAdmin) {
+          navigation.replace('AdminTab');
+        } else {
+          navigation.replace('UserTab');
+        }
+      };
+
+      // signin request
+      userSignin(formFields, signinCallback);
     }
   };
 
   render() {
     const { formFields, errors } = this.state;
+    const { isLoading } = this.props;
 
     return (
       <EnhancedView
         backgroundImagePath={backgroundImg}
         style={{ justifyContent: 'center', alignItems: 'center' }}
+        isLoading={isLoading}
       >
         <MainHeader style={{ color: colors.white }}>Sign In</MainHeader>
         <MainTextInput
@@ -86,3 +99,13 @@ export default class Signin extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isLoading: state.general.isLoading,
+});
+
+const mapDispatchToProps = {
+  userSignin: AuthActions.userSignin,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);
