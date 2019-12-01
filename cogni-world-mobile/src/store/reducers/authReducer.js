@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   isAuthenticated: false,
+  isCheckingUserAuthentication: true,
   currentUser: {},
 };
 
@@ -20,6 +21,19 @@ export default (state = INITIAL_STATE, action) => {
         user: null,
         isAuthenticated: false,
       };
+
+    case actionTypes.START_CHECK_USER_AUTHENTICATION:
+      return {
+        ...state,
+        isCheckingUserAuthentication: true,
+      };
+
+    case actionTypes.END_CHECK_USER_AUTHENTICATION:
+      return {
+        ...state,
+        isCheckingUserAuthentication: false,
+      };
+
     default:
       return state;
   }

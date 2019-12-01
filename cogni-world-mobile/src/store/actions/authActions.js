@@ -89,3 +89,37 @@ export const userSignout = () => dispatch => {
     type: actionTypes.UNSET_CURRENT_USER,
   });
 };
+
+// When user opens app
+export const checkIfUserIsSigned = () => dispatch => {
+  dispatch({
+    type: actionTypes.START_CHECK_USER_AUTHENTICATION,
+  });
+  AsyncStorage.getItem(keys.storedJWTname)
+    .then(token => {
+      if (token) {
+        // Set Authorization header
+        setAuthToken(token);
+
+        // Decode token to get user data
+        const decodedToken = jwtDecode(token);
+
+        // Check for expired token
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp && decodedToken.exp < currentTime) {
+          dispatch(userSignout());
+        } else {
+          // Set user
+          dispatch({
+            type: actionTypes.SET_CURRENT_USER,
+            payload: decodedToken,
+          });
+        }
+      }
+    })
+    .finally(() => {
+      dispatch({
+        type: actionTypes.END_CHECK_USER_AUTHENTICATION,
+      });
+    });
+};
