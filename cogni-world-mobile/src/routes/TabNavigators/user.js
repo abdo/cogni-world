@@ -2,9 +2,7 @@ import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import React from 'react';
 import { Icon } from 'native-base';
 
-import {
-  colors, sizes, fontSizes, fontTypes,
-} from '../../assets/styles/base';
+import { colors, sizes, fontSizes, fontTypes } from '../../assets/styles/base';
 import screens from '../../screens';
 
 export default createMaterialTopTabNavigator(

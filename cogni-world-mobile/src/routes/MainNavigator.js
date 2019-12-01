@@ -4,8 +4,11 @@ import { Text } from 'react-native';
 import React from 'react';
 
 import { colors } from '../assets/styles/base';
+import MainButton from '../common/components/UI/MainButton';
 import screens from '../screens';
 import tabNavigators from './TabNavigators';
+import { userSignout } from '../store/actions/authActions';
+import store from '../store/createStore';
 
 const loadStackNavigator = ({ isAuthenticated, isAdmin }) =>
   createStackNavigator(
@@ -21,15 +24,15 @@ const loadStackNavigator = ({ isAuthenticated, isAdmin }) =>
       initialRouteName: !isAuthenticated
         ? 'Registration'
         : isAdmin
-          ? 'UserTab'
-          : 'AdminTab',
+        ? 'UserTab'
+        : 'AdminTab',
 
       defaultNavigationOptions: ({ navigation }) => {
         // --first, we check which screen it is:
         const screen = navigation.state.routeName;
 
         // values we will modify then return:
-        const headerTitle = '';
+        let headerTitle = '';
         let headerRight = '';
         let headerLeft = '';
         let headerStyle = {
@@ -52,28 +55,25 @@ const loadStackNavigator = ({ isAuthenticated, isAdmin }) =>
 
           headerLeft = null;
 
+          headerRight = (
+            <MainButton
+              small
+              onPress={() =>
+                store.dispatch(
+                  userSignout(() => navigation.replace('Registration')),
+                )
+              }
+            >
+              Signout
+            </MainButton>
+          );
+
           if (tabScreen === 'tabScreen1') {
-            headerRight = (
-              <Text
-                style={{
-                  marginRight: 20,
-                  fontSize: 20,
-                  color: colors.secondary,
-                }}
-              />
-            );
+            headerTitle = 'tabScreen1';
           }
 
           if (tabScreen === 'tabScreen2') {
-            headerRight = (
-              <Text
-                style={{
-                  marginRight: 20,
-                  fontSize: 20,
-                  color: colors.secondary,
-                }}
-              />
-            );
+            headerTitle = 'tabScreen2';
           }
 
           // Return these in case of tab screens
@@ -90,6 +90,18 @@ const loadStackNavigator = ({ isAuthenticated, isAdmin }) =>
 
         if (screen === 'UserTab') {
           headerLeft = null;
+          headerRight = (
+            <MainButton
+              small
+              onPress={() =>
+                store.dispatch(
+                  userSignout(() => navigation.replace('Registration')),
+                )
+              }
+            >
+              Signout
+            </MainButton>
+          );
           return {
             tabBarVisible,
             headerStyle,

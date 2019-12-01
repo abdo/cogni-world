@@ -75,10 +75,11 @@ export const userSignin = (userData, callback) => dispatch => {
     });
 };
 
-export const userSignout = () => dispatch => {
+export const userSignout = callback => dispatch => {
   // Remove token from storage
   AsyncStorage.removeItem(keys.storedJWTname).catch(() => {
     console.log('Could not remove your saved credentials');
+    if (typeof callback === 'function') callback();
   });
 
   // Remove Authorization header
