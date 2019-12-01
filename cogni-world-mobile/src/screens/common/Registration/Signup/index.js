@@ -65,13 +65,11 @@ class Signup extends Component {
 
   render() {
     const { formFields, errors } = this.state;
-    const { isLoading } = this.props;
 
     return (
       <EnhancedView
         backgroundImagePath={backgroundImg}
         style={{ justifyContent: 'center', alignItems: 'center' }}
-        isLoading={isLoading}
       >
         <MainHeader style={{ color: colors.white }}>Sign Up</MainHeader>
         <MainTextInput
@@ -125,12 +123,8 @@ class Signup extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLoading: state.general.isLoading,
-});
-
 const mapDispatchToProps = {
   userSignup: AuthActions.userSignup,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(null, mapDispatchToProps)(Signup);

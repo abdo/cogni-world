@@ -19,6 +19,7 @@ const EnhancedView = ({
   children,
   isLoading,
   onRefresh,
+  noVerticalPadding,
 }) => {
   const component = (
     <ImageBackground
@@ -41,8 +42,10 @@ const EnhancedView = ({
               {
                 height: '100%',
                 width: '100%',
-                paddingTop: 15,
-                paddingBottom: 15,
+                ...(!noVerticalPadding && {
+                  paddingTop: 15,
+                  paddingBottom: 15,
+                }),
               },
               style,
             ]}
@@ -81,6 +84,8 @@ EnhancedView.defaultProps = {
   onRefresh: null,
 
   children: null,
+
+  noVerticalPadding: false,
 };
 
 EnhancedView.propTypes = {
@@ -103,6 +108,8 @@ EnhancedView.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+
+  noVerticalPadding: PropTypes.bool,
 };
 
 export default EnhancedView;
