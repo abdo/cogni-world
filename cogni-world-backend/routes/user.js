@@ -33,4 +33,10 @@ router.patch(
 // @body
 router.get('/isRegistered/:email', userController.isRegistered);
 
+// @route  GET api/user/verify/:userToken
+// @desc   Verify user account using user token
+// @access Public
+// @body
+router.get('/verify/:userToken', userController.verifyUser);
+
 module.exports = router;

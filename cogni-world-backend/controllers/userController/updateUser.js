@@ -28,11 +28,7 @@ module.exports = (req, res) => {
     }
   });
 
-  User.findOneAndUpdate(
-    { _id: req.params.userId },
-    { $set: newUserinfo },
-    { new: true },
-  )
+  User.findOneAndUpdate({ _id: req.params.userId }, { $set: newUserinfo })
     .then(() => res.status(200).json({ success: true }))
     .catch(err => {
       const message = 'Error checking database';

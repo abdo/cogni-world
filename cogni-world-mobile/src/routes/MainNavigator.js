@@ -1,6 +1,5 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Text } from 'react-native';
 import React from 'react';
 
 import { colors } from '../assets/styles/base';
