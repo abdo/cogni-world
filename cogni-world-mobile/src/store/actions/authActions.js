@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import jwtDecode from 'jwt-decode';
 
+import { startLoading, endLoading } from './helpers/setLoading';
 import * as actionTypes from './actionTypes';
 import catchErr from './helpers/catchErr';
 import http, { userAPI, setAuthToken } from '../../assets/utils/httpService';
@@ -20,10 +21,8 @@ export const checkUserHasRegistered = email =>
       });
   });
 
-export const userSignup = (userData, callback) => dispatch => {
-  dispatch({
-    type: actionTypes.START_LOADING,
-  });
+export const userSignup = (userData, callback) => () => {
+  startLoading();
   http
     .post(userAPI, userData)
     .then(() => {
@@ -33,22 +32,16 @@ export const userSignup = (userData, callback) => dispatch => {
       catchErr(err);
     })
     .finally(() => {
-      dispatch({
-        type: actionTypes.END_LOADING,
-      });
+      startLoading();
     });
 };
 
 export const userSignin = (userData, callback) => dispatch => {
-  dispatch({
-    type: actionTypes.START_LOADING,
-  });
-
+  startLoading();
   http
     .post(`${userAPI}/signin`, userData)
     .then(res => {
       const { token } = res.data;
-      console.log(res.data);
       // Save token to storage
       AsyncStorage.setItem(keys.storedJWTname, token).catch(() => {
         console.log('Could not save token into async storage');
@@ -72,8 +65,6 @@ export const userSignin = (userData, callback) => dispatch => {
       catchErr(err);
     })
     .finally(() => {
-      dispatch({
-        type: actionTypes.END_LOADING,
-      });
+      endLoading();
     });
 };
