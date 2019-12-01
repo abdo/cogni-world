@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
+const sendEmail = require('../helpers/sendEmail');
+const emailVerificationTemplate = require('../../templates/emailTemplates/emailVerification');
 const keys = require('../../keys.secret');
 
 // Models
@@ -48,8 +50,22 @@ module.exports = (req, res) => {
         loginTokenPayload,
         keys.secretOrKey,
         // { expiresIn: 604800 },
-        (err, token) =>
-          res.status(200).json({ success: true, token: `Bearer ${token}` }),
+        (err, token) => {
+          // resend verification email
+          console.log('userInfo.verified');
+          console.log(userInfo.verified);
+          if (!userInfo.verified) {
+            sendEmail({
+              receiverEmail: userInfo.email,
+              subject: 'Verify your Cogni World email',
+              template: emailVerificationTemplate({ user: user._doc }),
+            });
+          }
+
+          return res
+            .status(200)
+            .json({ success: true, token: `Bearer ${token}` });
+        },
       );
     });
   });

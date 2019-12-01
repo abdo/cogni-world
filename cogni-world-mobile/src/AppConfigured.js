@@ -15,14 +15,7 @@ import QuickHint from './common/components/UI/QuickHint';
 // 3- Global error effect
 // 4- Global isLoading effect
 
-const AppConfigured = ({
-  globalError,
-  isLoading,
-  checkIfUserIsSigned,
-  isAuthenticated,
-  isCheckingUserAuthentication,
-  currentUser,
-}) => {
+const AppConfigured = ({ globalError, isLoading, checkIfUserIsSigned }) => {
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -40,15 +33,15 @@ const AppConfigured = ({
     setFontLoaded(true);
   };
 
-  if (!fontLoaded || isCheckingUserAuthentication) {
+  if (!fontLoaded) {
     return <LoadingScreen />;
   }
 
-  const { isAdmin } = currentUser;
-
   return (
     <EnhancedView noVerticalPadding isLoading={isLoading}>
-      <Root>{App({ isAuthenticated, isAdmin })}</Root>
+      <Root>
+        <App />
+      </Root>
     </EnhancedView>
   );
 };
@@ -56,9 +49,6 @@ const AppConfigured = ({
 const mapStateToProps = state => ({
   globalError: state.general.error,
   isLoading: state.general.isLoading,
-  isAuthenticated: state.auth.isAuthenticated,
-  currentUser: state.auth.currentUser,
-  isCheckingUserAuthentication: state.auth.isCheckingUserAuthentication,
 });
 
 const mapDispatchToProps = {

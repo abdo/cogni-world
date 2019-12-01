@@ -1,6 +1,9 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
+const sendEmail = require('../helpers/sendEmail');
+const emailVerificationTemplate = require('../../templates/emailTemplates/emailVerification');
+
 // Models
 const User = mongoose.model('user');
 
@@ -37,7 +40,12 @@ module.exports = (req, res) => {
           newUser
             .save()
             .then(savedUser => {
-              res.status(200).json(savedUser);
+              sendEmail({
+                receiverEmail: savedUser.email,
+                subject: 'Verify your Cogni World email',
+                template: emailVerificationTemplate({ user: savedUser }),
+              });
+              res.status(200).json({ success: true });
             })
             .catch(dbError => {
               const message = 'Error saving user to database';

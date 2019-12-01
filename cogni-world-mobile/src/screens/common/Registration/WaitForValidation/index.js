@@ -58,7 +58,7 @@ export default class WaitForValidation extends Component {
                 color: colors.white,
               }}
             >
-              Another confirmation message has been send to your email
+              Another confirmation message will shortly be send to your email
             </MainText>
           </>
         ) : (
@@ -70,7 +70,7 @@ export default class WaitForValidation extends Component {
                 color: colors.white,
               }}
             >
-              A confirmation message has already been send to your email
+              A confirmation message will shortly be sent to your email
             </MainText>
             <MainText
               style={{

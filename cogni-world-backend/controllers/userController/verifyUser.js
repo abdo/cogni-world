@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-// const d = require('../../templates/AccountVerified.html');
 const path = require('path');
+
 // Models
 const User = mongoose.model('user');
 

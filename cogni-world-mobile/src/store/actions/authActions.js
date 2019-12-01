@@ -37,7 +37,7 @@ export const userSignup = (userData, callback) => () => {
       catchErr(err);
     })
     .finally(() => {
-      startLoading();
+      endLoading();
     });
 };
 
@@ -57,7 +57,6 @@ export const userSignin = (userData, callback) => dispatch => {
 
       // Decode token to get user data
       const user = jwtDecode(token);
-      console.log(user);
 
       // Set user in auth reducer
       dispatch({
@@ -119,8 +118,10 @@ export const checkIfUserIsSigned = () => dispatch => {
       }
     })
     .finally(() => {
-      dispatch({
-        type: actionTypes.END_CHECK_USER_AUTHENTICATION,
-      });
+      setTimeout(() => {
+        dispatch({
+          type: actionTypes.END_CHECK_USER_AUTHENTICATION,
+        });
+      }, 100);
     });
 };

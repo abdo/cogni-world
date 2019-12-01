@@ -1,16 +1,18 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import { checkUserHasRegistered } from '../../../../store/actions/authActions';
 import { colors } from '../../../../assets/styles/base';
 import EnhancedView from '../../../../common/components/EnhancedView';
 import IntroSwiper from './components/IntroSwiper/Index';
+import LoadingScreen from '../../Loading';
 import MainButton from '../../../../common/components/UI/MainButton';
 import MainTextInput from '../../../../common/components/UI/MainTextInput';
 import validator from './validator';
 
 const backgroundImg = require('../../../../assets/images/registration-background.png');
 
-export default class Registration extends Component {
+class Registration extends Component {
   static navigationOptions = () => ({
     headerTransparent: true,
     headerStyle: {
@@ -23,6 +25,20 @@ export default class Registration extends Component {
     email: '',
     errors: {},
   };
+
+  componentDidMount() {
+    const { isAuthenticated, currentUser, navigation } = this.props;
+
+    if (isAuthenticated && currentUser) {
+      if (currentUser.verified) {
+        if (currentUser.isAdmin) {
+          navigation.replace('AdminTab');
+        } else {
+          navigation.replace('UserTab');
+        }
+      }
+    }
+  }
 
   onChangeInput = (name, value) => this.setState({ [name]: value });
 
@@ -55,6 +71,12 @@ export default class Registration extends Component {
 
   render() {
     const { errors, isCheckingUserStatus } = this.state;
+    const { isCheckingUserAuthentication } = this.props;
+
+    if (isCheckingUserAuthentication) {
+      return <LoadingScreen />;
+    }
+
     return (
       <EnhancedView
         backgroundImagePath={backgroundImg}
@@ -79,3 +101,11 @@ export default class Registration extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  currentUser: state.auth.currentUser,
+  isCheckingUserAuthentication: state.auth.isCheckingUserAuthentication,
+});
+
+export default connect(mapStateToProps)(Registration);
