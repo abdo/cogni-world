@@ -8,10 +8,13 @@ const sendEmail = ({ receiverEmail, subject, template }) => {
       user: keys.serviceEmail.email,
       pass: keys.serviceEmail.password,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
   const message = {
-    from: 'sender@gmail.com', // Sender address
+    from: keys.serviceEmail.email, // Sender address
     to: receiverEmail, // List of recipients
     subject: subject, // Subject line
     html: template,
