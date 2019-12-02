@@ -24,7 +24,7 @@ const emailVerificationTemplate = ({ user }) => {
       link:
     </h4>
 
-    <a href="${keys.serverPath}/api/user/verify/${userToken}" target="_blank"
+    <a href="${keys.secondaryServerPath}/api/user/verify/${userToken}" target="_blank"
       ><button
         style="cursor:pointer;border-radius: 10px; height:30px;background-color: #8563DC;color:#fff;border:0"
       >
