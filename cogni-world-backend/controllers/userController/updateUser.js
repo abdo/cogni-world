@@ -7,7 +7,7 @@ module.exports = (req, res) => {
   const { params } = req;
 
   // Operation is allowed if: doer is admin or doer is same user being updated
-  const isSameUser = req.user._id.toString() === params.userId.toString();
+  const isSameUser = req.user._id.toString() === params.id.toString();
   const isAdmin = req.user.isAdmin;
 
   const newUserinfo = { ...req.body };
@@ -30,7 +30,7 @@ module.exports = (req, res) => {
     }
   });
 
-  User.findOneAndUpdate({ _id: req.params.userId }, { $set: newUserinfo })
+  User.findOneAndUpdate({ _id: req.params.id }, { $set: newUserinfo })
     .then(() => res.status(200).json({ success: true }))
     .catch(err => {
       const message = 'Error checking database';

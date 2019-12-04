@@ -22,7 +22,7 @@ router.post('/signin', userController.userSignin);
 // @access Private
 // @body   firstName lastName password email, [..]
 router.patch(
-  '/:userId',
+  '/:id',
   passport.authenticate('jwt', { session: false }),
   userController.updateUser,
 );

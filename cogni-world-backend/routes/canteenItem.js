@@ -7,13 +7,24 @@ const canteenController = require('../controllers/canteenController/index.js');
 
 // @route  POST api/canteen
 // @desc   Create canteen item
-// @access Public
+// @access Private
 // @body   name [price]
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   onlyAllow('admin'),
   canteenController.createCanteenItem,
+);
+
+// @route  PATCH api/canteen/:id
+// @desc   Edit canteen item info
+// @access Private
+// @body   [name price]
+router.patch(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  onlyAllow('admin'),
+  canteenController.editCanteenItem,
 );
 
 module.exports = router;

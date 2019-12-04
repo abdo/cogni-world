@@ -31,8 +31,8 @@ module.exports = (req, res) => {
 
       newItem
         .save()
-        .then(savedItem => {
-          res.status(200).json({ savedItem });
+        .then(() => {
+          res.status(200).json({ success: true });
         })
         .catch(dbError => {
           const message = 'Error saving item to database';
