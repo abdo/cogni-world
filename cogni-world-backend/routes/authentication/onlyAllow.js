@@ -1,3 +1,5 @@
+const capitalize = require('../../utils/capitalize');
+
 const onlyAllow = roles => {
   // roles can be: 'any', 'user', 'admin'
   let rolesArr;
@@ -32,8 +34,6 @@ const onlyAllow = roles => {
     }
   };
 };
-
-const capitalize = word => word[0].toUpperCase() + word.slice(1, word.length);
 
 const disAllow = (req, res) => {
   const message = 'You are not allowed to perform this operation';

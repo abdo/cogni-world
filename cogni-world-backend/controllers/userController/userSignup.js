@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const capitalize = require('../../utils/capitalize');
 const mongoose = require('mongoose');
 
 const sendEmail = require('../helpers/sendEmail');
@@ -27,8 +28,8 @@ module.exports = (req, res) => {
       }
       // Create new user
       const newUser = new User({
-        firstName: req.body.firstName.toLowerCase(),
-        lastName: req.body.lastName.toLowerCase(),
+        firstName: capitalize(req.body.firstName),
+        lastName: capitalize(req.body.lastName),
         email: req.body.email.toLowerCase(),
         password: req.body.password,
       });

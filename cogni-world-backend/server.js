@@ -25,6 +25,7 @@ app.use(cors());
 // Routes
 app.use('/info', (req, res) => res.send('Cogni World App API'));
 app.use('/api/user', require('./routes/user'));
+app.use('/api/canteen', require('./routes/canteenItem'));
 
 const port = process.env.PORT || 4949;
 

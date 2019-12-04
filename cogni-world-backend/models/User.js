@@ -39,6 +39,26 @@ const UserSchema = new mongoose.Schema({
     default: () => randToken.generate(32),
   },
   pushNotificationToken: String,
+  catering: {
+    cateringBalance: {
+      type: Number,
+      default: 0,
+    },
+    itemsOrdered: {
+      type: Number,
+      default: 0,
+    },
+  },
+  canteen: {
+    canteenBalance: {
+      type: Number,
+      default: 0,
+    },
+    itemsOrdered: {
+      type: Number,
+      default: 0,
+    },
+  },
   date: {
     type: Date,
     default: Date.now,

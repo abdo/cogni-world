@@ -14,7 +14,9 @@ module.exports = (req, res) => {
 
   if (
     (!isAdmin && !isSameUser) ||
-    (!isAdmin && Object.keys(newUserinfo).includes('verified'))
+    (!isAdmin && Object.keys(newUserinfo).includes('verified')) ||
+    (!isAdmin && Object.keys(newUserinfo).includes('catering')) ||
+    (!isAdmin && Object.keys(newUserinfo).includes('canteen'))
   ) {
     const message = 'You are not allowed to perform this operation';
     return res.status(401).json({ message });
