@@ -32,6 +32,7 @@ module.exports = (req, res) => {
         lastName: capitalize(req.body.lastName),
         email: req.body.email.toLowerCase(),
         password: req.body.password,
+        gender: req.body.gender,
       });
 
       bcrypt.genSalt(10, (err, salt) => {

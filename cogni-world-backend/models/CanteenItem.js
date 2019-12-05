@@ -13,6 +13,11 @@ const CanteenItemSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  avatar: {
+    type: String,
+    default:
+      'https://www.packingsolution.co.uk/wp-content/uploads/2017/08/93267427.jpg',
+  },
   date: {
     type: Date,
     default: Date.now,

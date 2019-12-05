@@ -19,6 +19,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  gender: String, //male or female
   type: {
     // employee, ceo, coo, ..etc
     type: String,
@@ -63,6 +64,22 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+});
+
+UserSchema.pre('save', function(next) {
+  console.log(this);
+  if (!this.avatar) {
+    if (this.gender) {
+      this.avatar =
+        this.gender === 'male'
+          ? 'https://i.imgur.com/aJE2I7X.png'
+          : 'https://i.imgur.com/Pk3PTcD.png';
+    } else {
+      this.avatar =
+        'http://www.caribbeangamezone.com/wp-content/uploads/2018/03/avatar-placeholder.png';
+    }
+  }
+  next();
 });
 
 module.exports = mongoose.model('user', UserSchema);
