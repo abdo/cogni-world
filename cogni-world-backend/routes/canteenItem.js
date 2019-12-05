@@ -27,4 +27,14 @@ router.patch(
   canteenController.editCanteenItem,
 );
 
+// @route  POST api/canteen/purchase/:itemId
+// @desc   The logged in user purchases an item
+// @access Private
+// @body
+router.post(
+  '/purchase/:itemId',
+  passport.authenticate('jwt', { session: false }),
+  canteenController.purchaseCanteenItem,
+);
+
 module.exports = router;
