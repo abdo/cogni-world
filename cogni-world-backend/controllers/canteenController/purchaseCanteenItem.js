@@ -9,7 +9,6 @@ module.exports = (req, res) => {
 
   CanteenItem.findById(params.itemId)
     .then(item => {
-      console.log(item);
       if (!item) {
         const message = 'Item does not exist';
         return res.status(400).json({ message });

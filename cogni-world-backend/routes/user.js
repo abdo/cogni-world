@@ -5,6 +5,17 @@ const passport = require('passport');
 const onlyAllow = require('./authentication/onlyAllow');
 const userController = require('../controllers/userController/index.js');
 
+// @route  GET api/user/all
+// @desc   Get all users
+// @access Private
+// @body
+router.get(
+  '/all',
+  passport.authenticate('jwt', { session: false }),
+  onlyAllow('admin'),
+  userController.getAllUsers,
+);
+
 // @route  POST api/user
 // @desc   User Registration - Create new user
 // @access Public
