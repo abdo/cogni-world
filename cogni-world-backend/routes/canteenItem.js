@@ -5,6 +5,17 @@ const passport = require('passport');
 const onlyAllow = require('./authentication/onlyAllow');
 const canteenController = require('../controllers/canteenController/index.js');
 
+// @route  GET api/canteen/all
+// @desc   Get all canteen items
+// @access Private
+// @body
+router.get(
+  '/all',
+  passport.authenticate('jwt', { session: false }),
+  onlyAllow('admin'),
+  canteenController.getAllCanteenItems,
+);
+
 // @route  POST api/canteen
 // @desc   Create canteen item
 // @access Private

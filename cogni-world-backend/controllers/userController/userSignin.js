@@ -52,8 +52,6 @@ module.exports = (req, res) => {
         // { expiresIn: 604800 },
         (err, token) => {
           // resend verification email
-          console.log('userInfo.verified');
-          console.log(userInfo.verified);
           if (!userInfo.verified) {
             sendEmail({
               receiverEmail: userInfo.email,
