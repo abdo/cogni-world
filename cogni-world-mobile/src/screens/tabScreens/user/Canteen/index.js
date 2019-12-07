@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, Card } from 'native-base';
+
+import EnhancedView from '../../../../common/components/EnhancedView';
+import MainRowsCard from '../../../../common/components/UI/MainRowsCard';
 
 const Canteen = () => (
-  <View>
-    <Card>
-      <Text>Canteen</Text>
-    </Card>
-  </View>
+  <EnhancedView>
+    <MainRowsCard rows={[{ key: 'My Canteen Balance', value: 23 }]} />
+  </EnhancedView>
 );
 
 export default Canteen;

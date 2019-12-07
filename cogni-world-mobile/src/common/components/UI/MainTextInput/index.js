@@ -39,8 +39,8 @@ const MainTextInput = ({
   style: customStyle,
   ...props
 }) => {
-  const onChangeText = value => {
-    let submittedValue = value;
+  const onChangeText = inputValue => {
+    let submittedValue = inputValue;
 
     if (keyboardType === 'number-pad' || keyboardType === 'numeric') {
       if (isNaN(submittedValue)) {
