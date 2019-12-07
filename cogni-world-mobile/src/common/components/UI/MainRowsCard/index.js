@@ -1,19 +1,23 @@
 import { Text, Card, CardItem, Body } from 'native-base';
 import React from 'react';
+import { fontTypes } from '../../../../assets/styles/base';
 
-const MainRowsCard = ({ rows }) => (
+const MainRowsCard = ({ rows, style }) => (
   <Card
     style={{
       width: '90%',
       alignSelf: 'center',
+      ...style,
     }}
   >
     {rows.map(row => (
       <CardItem header key={row.key}>
-        <Text>{row.key}</Text>
+        <Text style={{ fontWeight: 'normal', fontFamily: fontTypes.mainBold }}>
+          {row.key}
+        </Text>
         <CardItem>
           <Body>
-            <Text>{row.value}</Text>
+            <Text style={{ fontFamily: fontTypes.main }}>{row.value}</Text>
           </Body>
         </CardItem>
       </CardItem>

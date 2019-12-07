@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import authReducer from './authReducer';
 import generalReducer from './generalReducer';
+import authReducer from './authReducer';
+import canteenReducer from './canteenReducer';
 
 export default combineReducers({
-  auth: authReducer,
   general: generalReducer,
+  auth: authReducer,
+  canteen: canteenReducer,
 });

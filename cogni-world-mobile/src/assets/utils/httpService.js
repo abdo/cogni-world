@@ -26,3 +26,4 @@ export const removeAuthToken = () => {
 
 export const { serverPath } = keys;
 export const userAPI = `${serverPath}/api/user`;
+export const canteenAPI = `${serverPath}/api/canteen`;

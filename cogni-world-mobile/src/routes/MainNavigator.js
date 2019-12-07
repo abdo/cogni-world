@@ -48,6 +48,10 @@ const stackNavigator = createStackNavigator(
         headerTitle = 'Canteen 🍟';
       }
 
+      if (internalScreen === 'MeTabScreen') {
+        headerTitle = 'Me 🕺';
+      }
+
       if (mainScreen === 'AdminTab' || mainScreen === 'UserTab') {
         headerRight = (
           <MainButton
