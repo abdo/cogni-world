@@ -1,12 +1,11 @@
 // // Tab screens
 
 // User Tab Screens
-import Test3 from './tabScreens/user/test3';
-import Test4 from './tabScreens/user/test4';
+import Canteen from './tabScreens/user/Canteen';
+import Me from './tabScreens/user/Me';
 
 // Admin Tab Screens
-import Test1 from './tabScreens/admin/test1';
-import Test2 from './tabScreens/admin/test2';
+import Admin from './tabScreens/admin/Admin';
 
 // // Other screens
 import Registration from './common/Registration/Main';
@@ -15,8 +14,8 @@ import Signup from './common/Registration/Signup';
 import WaitForValidation from './common/Registration/WaitForValidation';
 
 const screens = {
-  UserScreens: { Test3, Test4 },
-  AdminScreens: { Test1, Test2 },
+  UserScreens: { Canteen, Me },
+  AdminScreens: { Admin },
   Registration,
   Signin,
   Signup,

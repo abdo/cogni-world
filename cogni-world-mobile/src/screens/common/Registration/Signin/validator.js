@@ -11,7 +11,7 @@ const constraints = {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       minimum: 8,
-      message: 'is incorrect',
+      message: 'is too short',
     },
   },
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'native-base';
 
-const Test2 = () => (
+const Admin = () => (
   <View>
-    <Text>Test2</Text>
+    <Text>Admin</Text>
   </View>
 );
 
-export default Test2;
+export default Admin;

@@ -52,11 +52,12 @@ const stackNavigator = createStackNavigator(
         headerRight = (
           <MainButton
             small
-            onPress={() =>
+            onPress={() => {
               store.dispatch(
                 userSignout(() => navigation.replace('Registration')),
-              )
-            }
+              );
+              navigation.navigate('Registration');
+            }}
           >
             Signout
           </MainButton>
@@ -87,11 +88,12 @@ const stackNavigator = createStackNavigator(
         headerRight = (
           <MainButton
             small
+            style={{ backgroundColor: colors.primaryDark }}
             onPress={() => {
               store.dispatch(
                 userSignout(() => navigation.replace('Registration')),
               );
-              navigation.replace('Registration');
+              navigation.navigate('Registration');
             }}
           >
             Signout

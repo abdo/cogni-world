@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'native-base';
 
-const Test1 = () => (
+const Canteen = () => (
   <View>
-    <Text>Test1</Text>
+    <Text>Canteen</Text>
   </View>
 );
 
-export default Test1;
+export default Canteen;

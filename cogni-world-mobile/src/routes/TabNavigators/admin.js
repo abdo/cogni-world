@@ -11,10 +11,10 @@ import screens from '../../screens';
 export default createMaterialTopTabNavigator(
   {
     // --specific navigationOptions for each tab
-    tabScreen1: {
-      screen: screens.AdminScreens.Test1,
+    AdminTabScreen: {
+      screen: screens.AdminScreens.Admin,
       navigationOptions: {
-        tabBarLabel: 'AdminTab1',
+        tabBarLabel: 'Admin',
         tabBarIcon: ({ tintColor }) => (
           <Icon
             type="EvilIcons"
@@ -26,14 +26,29 @@ export default createMaterialTopTabNavigator(
         ),
       },
     },
-    tabScreen2: {
-      screen: screens.AdminScreens.Test2,
+    CanteenTabScreen: {
+      screen: screens.UserScreens.Canteen,
       navigationOptions: {
-        tabBarLabel: 'AdminTab2',
+        tabBarLabel: 'Canteen',
         tabBarIcon: ({ tintColor }) => (
           <Icon
-            type="EvilIcons"
-            name="gear"
+            type="MaterialCommunityIcons"
+            name="cupcake"
+            size={24}
+            style={{ color: tintColor, minWidth: 50 }}
+
+          />
+        ),
+      },
+    },
+    MeTabScreen: {
+      screen: screens.UserScreens.Me,
+      navigationOptions: {
+        tabBarLabel: 'Me',
+        tabBarIcon: ({ tintColor }) => (
+          <Icon
+            type="Ionicons"
+            name="md-person"
             size={24}
             style={{ color: tintColor, minWidth: 50 }}
           />
@@ -44,8 +59,8 @@ export default createMaterialTopTabNavigator(
   {
     // Config
 
-    initialRouteName: 'tabScreen1',
-    order: ['tabScreen1', 'tabScreen2'],
+    initialRouteName: 'AdminTabScreen',
+    order: ['AdminTabScreen', 'CanteenTabScreen', 'MeTabScreen'],
     tabBarPosition: 'bottom',
     swipeEnabled: true,
     animationEnabled: false,

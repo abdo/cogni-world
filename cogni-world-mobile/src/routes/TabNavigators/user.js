@@ -8,28 +8,28 @@ import screens from '../../screens';
 export default createMaterialTopTabNavigator(
   {
     // --specific navigationOptions for each tab
-    tabScreen1: {
-      screen: screens.UserScreens.Test3,
+    CanteenTabScreen: {
+      screen: screens.UserScreens.Canteen,
       navigationOptions: {
-        tabBarLabel: 'UserTab1',
+        tabBarLabel: 'Canteen',
         tabBarIcon: ({ tintColor }) => (
           <Icon
-            type="EvilIcons"
-            name="gear"
+            type="MaterialCommunityIcons"
+            name="cupcake"
             size={24}
             style={{ color: tintColor, minWidth: 50 }}
           />
         ),
       },
     },
-    tabScreen2: {
-      screen: screens.UserScreens.Test4,
+    MeTabScreen: {
+      screen: screens.UserScreens.Me,
       navigationOptions: {
-        tabBarLabel: 'UserTab1',
+        tabBarLabel: 'Me',
         tabBarIcon: ({ tintColor }) => (
           <Icon
-            type="EvilIcons"
-            name="gear"
+            type="Ionicons"
+            name="md-person"
             size={24}
             style={{ color: tintColor, minWidth: 50 }}
           />
@@ -40,8 +40,8 @@ export default createMaterialTopTabNavigator(
   {
     // Config
 
-    initialRouteName: 'tabScreen1',
-    order: ['tabScreen1', 'tabScreen2'],
+    initialRouteName: 'CanteenTabScreen',
+    order: ['CanteenTabScreen', 'MeTabScreen'],
     tabBarPosition: 'bottom',
     swipeEnabled: true,
     animationEnabled: false,

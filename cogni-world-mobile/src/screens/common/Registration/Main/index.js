@@ -40,7 +40,7 @@ class Registration extends Component {
     }
   }
 
-  onChangeInput = (name, value) => this.setState({ [name]: value });
+  onChangeInput = (name, value) => this.setState({ [name]: value.toLowerCase() });
 
   onAccess = () => {
     const { email } = this.state;
