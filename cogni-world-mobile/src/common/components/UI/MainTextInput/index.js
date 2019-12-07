@@ -24,6 +24,7 @@ import {
 
 const MainTextInput = ({
   initialValue,
+  value,
   error,
   errorText,
   color,
@@ -116,6 +117,7 @@ const MainTextInput = ({
         inputStyle={{ color: colors.black, fontFamily: fontTypes.main }}
         keyboardType={keyboardType}
         defaultValue={initialValue}
+        {...(value || value === '' ? { value } : {})}
         style={{
           borderColor: error ? colors.red : colors.lightGray,
           borderWidth: 2,
@@ -163,6 +165,7 @@ MainTextInput.defaultProps = {
   label: 'Type here',
   infoText: null,
   initialValue: '',
+  value: null,
   keyboardType: 'default',
   color: colors.black,
   iconType: 'FontAwesome',
@@ -178,6 +181,7 @@ MainTextInput.propTypes = {
   errorText: PropTypes.string,
   infoText: PropTypes.string,
   initialValue: PropTypes.string,
+  value: PropTypes.string,
   label: PropTypes.string,
   keyboardType: PropTypes.string,
   color: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]),

@@ -23,7 +23,13 @@ const stackNavigator = createStackNavigator(
 
     defaultNavigationOptions: ({ navigation }) => {
       // --first, we check which screen it is:
-      const screen = navigation.state.routeName;
+      const { routes, index, routeName } = navigation.state;
+
+      const mainScreen = routeName;
+      const internalScreen = routes && routes[index].routeName;
+      // Main Screen is actually the name of the screen
+      // except if we are in the tab, then it will be the tab name (ex: UserTab)
+      // then, internalScreen will be actually the name of the screen
 
       // values we will modify then return:
       let headerTitle = '';
@@ -38,82 +44,50 @@ const stackNavigator = createStackNavigator(
       const tabBarVisible = true;
       // and so on...
 
-      // For each screen:
-      if (screen === 'AdminTab') {
-        const { routes, index } = navigation.state;
-        const tabScreen = routes[index].routeName;
+      if (internalScreen === 'CanteenTabScreen') {
+        headerTitle = 'Canteen 🍟';
+      }
 
+      if (mainScreen === 'AdminTab' || mainScreen === 'UserTab') {
+        headerRight = (
+          <MainButton
+            small
+            style={{
+              backgroundColor:
+                mainScreen === 'AdminTab' ? colors.primary : colors.primaryDark,
+            }}
+            onPress={() => {
+              store.dispatch(
+                userSignout(() => navigation.replace('Registration')),
+              );
+              navigation.navigate('Registration');
+            }}
+          >
+            Signout
+          </MainButton>
+        );
+      }
+
+      // For each screen:
+      if (mainScreen === 'AdminTab') {
         headerStyle = {
           backgroundColor: colors.primaryDark,
         };
 
         headerLeft = null;
-
-        headerRight = (
-          <MainButton
-            small
-            onPress={() => {
-              store.dispatch(
-                userSignout(() => navigation.replace('Registration')),
-              );
-              navigation.navigate('Registration');
-            }}
-          >
-            Signout
-          </MainButton>
-        );
-
-        if (tabScreen === 'tabScreen1') {
-          headerTitle = 'tabScreen1';
-        }
-
-        if (tabScreen === 'tabScreen2') {
-          headerTitle = 'tabScreen2';
-        }
-
-        // Return these in case of tab screens
-        return {
-          tabBarVisible,
-          headerStyle,
-          headerTitle,
-          headerRight,
-          headerLeft,
-          headerTitleStyle,
-          // and so on..
-        };
       }
 
-      if (screen === 'UserTab') {
+      if (mainScreen === 'UserTab') {
         headerLeft = null;
-        headerRight = (
-          <MainButton
-            small
-            style={{ backgroundColor: colors.primaryDark }}
-            onPress={() => {
-              store.dispatch(
-                userSignout(() => navigation.replace('Registration')),
-              );
-              navigation.navigate('Registration');
-            }}
-          >
-            Signout
-          </MainButton>
-        );
-        return {
-          tabBarVisible,
-          headerStyle,
-          headerTitle,
-          headerRight,
-          headerLeft,
-          headerTitleStyle,
-          // and so on..
-        };
       }
 
       // Return these for other screens
       return {
-        headerRight,
+        tabBarVisible,
         headerStyle,
+        headerTitle,
+        headerRight,
+        headerLeft,
         headerTitleStyle,
       };
     },

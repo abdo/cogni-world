@@ -89,6 +89,7 @@ class Signin extends Component {
           error={!!errors.password}
           errorText={errors.password && errors.password[0]}
           secureTextEntry
+          value={formFields.password}
           name="password"
           onChange={this.onChangeInput}
         />

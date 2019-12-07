@@ -18,6 +18,7 @@ class Registration extends Component {
     headerStyle: {
       backgroundColor: colors.transparent,
     },
+    headerLeft: null,
   });
 
   state = {
@@ -40,7 +41,8 @@ class Registration extends Component {
     }
   }
 
-  onChangeInput = (name, value) => this.setState({ [name]: value.toLowerCase() });
+  onChangeInput = (name, value) =>
+    this.setState({ [name]: value.toLowerCase() });
 
   onAccess = () => {
     const { email } = this.state;
@@ -55,6 +57,9 @@ class Registration extends Component {
       });
       checkUserHasRegistered(email)
         .then(isRegistered => {
+          this.setState({
+            email: '',
+          });
           if (isRegistered) {
             navigation.navigate('Signin', { email });
           } else {
@@ -70,7 +75,7 @@ class Registration extends Component {
   };
 
   render() {
-    const { errors, isCheckingUserStatus } = this.state;
+    const { email, errors, isCheckingUserStatus } = this.state;
     const { isCheckingUserAuthentication } = this.props;
 
     if (isCheckingUserAuthentication) {
@@ -89,6 +94,7 @@ class Registration extends Component {
           errorText={errors.email && errors.email[0]}
           name="email"
           onChange={this.onChangeInput}
+          value={email}
         />
         <MainButton
           onPress={this.onAccess}

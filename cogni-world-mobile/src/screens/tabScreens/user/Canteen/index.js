@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text } from 'native-base';
+import { View, Text, Card } from 'native-base';
 
 const Canteen = () => (
   <View>
-    <Text>Canteen</Text>
+    <Card>
+      <Text>Canteen</Text>
+    </Card>
   </View>
 );
 
