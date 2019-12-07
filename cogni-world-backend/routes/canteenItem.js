@@ -12,7 +12,6 @@ const canteenController = require('../controllers/canteenController/index.js');
 router.get(
   '/all',
   passport.authenticate('jwt', { session: false }),
-  onlyAllow('admin'),
   canteenController.getAllCanteenItems,
 );
 
