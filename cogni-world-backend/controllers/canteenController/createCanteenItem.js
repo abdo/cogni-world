@@ -27,6 +27,7 @@ module.exports = (req, res) => {
       const newItem = new CanteenItem({
         name: capitalize(req.body.name),
         price: req.body.price,
+        avatar: req.body.avatar,
       });
 
       newItem
