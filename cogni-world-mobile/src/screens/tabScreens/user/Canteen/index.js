@@ -6,19 +6,29 @@ import CanteenItemsList from './components/CanteenItemsList';
 import EnhancedView from '../../../../common/components/EnhancedView';
 import MainRowsCard from '../../../../common/components/UI/MainRowsCard';
 
-const Canteen = ({ currentUser, canteenItems, getAllCanteenItems }) => {
+const Canteen = ({
+  currentUser,
+  canteenItems,
+  getAllCanteenItems,
+  purchaseCanteenItem,
+}) => {
   useEffect(() => {
     getAllCanteenItems();
   }, []);
   const { canteen, isAdmin } = currentUser;
   const { canteenBalance } = canteen;
 
+  console.log(currentUser);
   return (
     <EnhancedView>
       <MainRowsCard
         rows={[{ key: 'Balance', value: `${canteenBalance}  EGP` }]}
       />
-      <CanteenItemsList items={canteenItems} isAdmin={isAdmin} />
+      <CanteenItemsList
+        items={canteenItems}
+        isAdmin={isAdmin}
+        purchaseCanteenItem={purchaseCanteenItem}
+      />
     </EnhancedView>
   );
 };
@@ -30,6 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getAllCanteenItems: CanteenActions.getAllCanteenItems,
+  purchaseCanteenItem: CanteenActions.purchaseCanteenItem,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Canteen);

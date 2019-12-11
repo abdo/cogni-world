@@ -11,7 +11,7 @@ import {
 } from 'native-base';
 import MainModal from '../../../../../../common/components/UI/MainModal';
 
-const CanteenItemsList = ({ items, isAdmin }) => (
+const CanteenItemsList = ({ items, isAdmin, purchaseCanteenItem }) => (
   <List>
     {items.map(({ _id: id, avatar, name, price, numberOfPurchases }) => (
       <ListItem thumbnail key={id}>
@@ -41,7 +41,7 @@ const CanteenItemsList = ({ items, isAdmin }) => (
             }
         </Body>
         <Right>
-          <Button transparent onPress={() => MainModal({ header: 'Are you sure?', text: 'You will get this canteen item' })}>
+          <Button transparent onPress={() => MainModal({ header: 'Are you sure?', text: 'You will get this canteen item', onConfirm: () => purchaseCanteenItem({ _id: id, price }) })}>
             <Text>Get</Text>
           </Button>
         </Right>

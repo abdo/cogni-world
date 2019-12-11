@@ -23,4 +23,22 @@ export const getAllCanteenItems = callback => dispatch => {
     });
 };
 
-export const createCanteenItem = () => () => {};
+export const purchaseCanteenItem = ({ _id: id, price }, callback) => (dispatch) => {
+  startLoading();
+  http
+  .post(`${canteenAPI}/purchase/${id}`)
+  .then(res => {
+    const canteenItems = res.data;
+    dispatch({
+      type: actionTypes.PURCHASE_CANTEEN_ITEM,
+      payload: price,
+    });
+    if (typeof callback === 'function') callback(canteenItems);
+  })
+  .catch(err => {
+    catchErr(err);
+  })
+  .finally(() => {
+    endLoading();
+  });
+};

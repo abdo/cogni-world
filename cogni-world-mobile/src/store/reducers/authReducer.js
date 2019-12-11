@@ -34,6 +34,19 @@ export default (state = INITIAL_STATE, action) => {
         isCheckingUserAuthentication: false,
       };
 
+    case actionTypes.PURCHASE_CANTEEN_ITEM:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          canteen: {
+            canteenBalance:
+              state.currentUser.canteen.canteenBalance - action.payload,
+            itemsOrdered: state.currentUser.canteen.itemsOrdered + 1,
+          },
+        },
+      };
+
     default:
       return state;
   }
