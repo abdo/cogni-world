@@ -4,6 +4,7 @@ const userSignin = require('./userSignin');
 const updateUser = require('./updateUser');
 const isRegistered = require('./isRegistered');
 const verifyUser = require('./verifyUser');
+const refreshUserToken = require('./refreshUserToken');
 
 module.exports = {
   getAllUsers,
@@ -12,4 +13,5 @@ module.exports = {
   updateUser,
   isRegistered,
   verifyUser,
+  refreshUserToken,
 };

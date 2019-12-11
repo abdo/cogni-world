@@ -50,4 +50,14 @@ router.get('/isRegistered/:email', userController.isRegistered);
 // @body
 router.get('/verify/:userToken', userController.verifyUser);
 
+// @route  GET api/user/refresh
+// @desc   Verify user account using user token
+// @access Private
+// @body
+router.get(
+  '/refresh',
+  passport.authenticate('jwt', { session: false }),
+  userController.refreshUserToken,
+);
+
 module.exports = router;
