@@ -9,17 +9,18 @@ import {
   Body,
   Thumbnail,
 } from 'native-base';
+import MainModal from '../../../../../../common/components/UI/MainModal';
 
-const CanteenItemsList = ({ canteenItems, isAdmin }) => (
+const CanteenItemsList = ({ items, isAdmin }) => (
   <List>
-    {canteenItems.map(({ _id: id, avatar, name, price, numberOfPurchases }) => (
+    {items.map(({ _id: id, avatar, name, price, numberOfPurchases }) => (
       <ListItem thumbnail key={id}>
         <Left>
           <Thumbnail
             square
             source={{
-              uri: avatar,
-            }}
+                uri: avatar,
+              }}
           />
         </Left>
         <Body>
@@ -27,25 +28,25 @@ const CanteenItemsList = ({ canteenItems, isAdmin }) => (
           <Text note numberOfLines={1}>
             {price}
             {' '}
-            EGP
+              EGP
           </Text>
           {
-            isAdmin && (
-            <Text note numberOfLines={1}>
-            Bought
-              {` ${numberOfPurchases} `}
-            times
-            </Text>
-            )
-          }
+              isAdmin && (
+              <Text note numberOfLines={1}>
+              Bought
+                {` ${numberOfPurchases} `}
+              times
+              </Text>
+              )
+            }
         </Body>
         <Right>
-          <Button transparent>
+          <Button transparent onPress={() => MainModal({ header: 'Are you sure?', text: 'You will get this canteen item' })}>
             <Text>Get</Text>
           </Button>
         </Right>
       </ListItem>
-    ))}
+      ))}
   </List>
 );
 

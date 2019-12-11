@@ -18,7 +18,7 @@ const Canteen = ({ currentUser, canteenItems, getAllCanteenItems }) => {
       <MainRowsCard
         rows={[{ key: 'Balance', value: `${canteenBalance}  EGP` }]}
       />
-      <CanteenItemsList canteenItems={canteenItems} isAdmin={isAdmin} />
+      <CanteenItemsList items={canteenItems} isAdmin={isAdmin} />
     </EnhancedView>
   );
 };

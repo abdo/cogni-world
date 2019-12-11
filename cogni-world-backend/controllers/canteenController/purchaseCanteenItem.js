@@ -17,10 +17,6 @@ module.exports = (req, res) => {
       // item's price should be subtracted from user's canteenBalance
 
       User.findById(req.user._doc._id).then(user => {
-        const newBalance = user.canteen.canteenBalance - item.price;
-        if (newBalance < 0) {
-          res.status(400).json({ message: 'Not enough balance' });
-        }
         user.canteen = {
           canteenBalance: user.canteen.canteenBalance - item.price,
           itemsOrdered: user.canteen.itemsOrdered + 1,
