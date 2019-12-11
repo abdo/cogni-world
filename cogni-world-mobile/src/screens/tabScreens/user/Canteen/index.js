@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 
 import * as CanteenActions from '../../../../store/actions/canteenActions';
+import CanteenItemsList from './components/CanteenItemsList';
 import EnhancedView from '../../../../common/components/EnhancedView';
 import MainRowsCard from '../../../../common/components/UI/MainRowsCard';
 
@@ -9,7 +10,7 @@ const Canteen = ({ currentUser, canteenItems, getAllCanteenItems }) => {
   useEffect(() => {
     getAllCanteenItems();
   }, []);
-  const { canteen } = currentUser;
+  const { canteen, isAdmin } = currentUser;
   const { canteenBalance } = canteen;
 
   return (
@@ -17,6 +18,7 @@ const Canteen = ({ currentUser, canteenItems, getAllCanteenItems }) => {
       <MainRowsCard
         rows={[{ key: 'Balance', value: `${canteenBalance}  EGP` }]}
       />
+      <CanteenItemsList canteenItems={canteenItems} isAdmin={isAdmin} />
     </EnhancedView>
   );
 };
