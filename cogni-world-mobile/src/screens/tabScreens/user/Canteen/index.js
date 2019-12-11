@@ -18,7 +18,6 @@ const Canteen = ({
   const { canteen, isAdmin } = currentUser;
   const { canteenBalance } = canteen;
 
-  console.log(currentUser);
   return (
     <EnhancedView>
       <MainRowsCard

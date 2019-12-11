@@ -90,7 +90,7 @@ export const userSignout = callback => dispatch => {
   });
 };
 
-// When user opens app
+
 export const checkIfUserIsSigned = () => dispatch => {
   dispatch({
     type: actionTypes.START_CHECK_USER_AUTHENTICATION,
@@ -116,12 +116,31 @@ export const checkIfUserIsSigned = () => dispatch => {
           });
         }
       }
+
+      // Refresh user token
+      http.get(`${userAPI}/refresh`).then(res => {
+        const { token: newToken } = res.data;
+        if (newToken) {
+          // Set Authorization header
+
+          // Save token to storage
+          AsyncStorage.setItem(keys.storedJWTname, newToken).catch(() => {
+            console.log('Could not save token into async storage');
+          });
+
+          // Decode token to get user data
+          const decodedToken = jwtDecode(newToken);
+
+          dispatch({
+            type: actionTypes.SET_CURRENT_USER,
+            payload: decodedToken,
+          });
+        }
+      });
     })
     .finally(() => {
-      setTimeout(() => {
-        dispatch({
-          type: actionTypes.END_CHECK_USER_AUTHENTICATION,
-        });
-      }, 100);
+      dispatch({
+        type: actionTypes.END_CHECK_USER_AUTHENTICATION,
+      });
     });
 };
