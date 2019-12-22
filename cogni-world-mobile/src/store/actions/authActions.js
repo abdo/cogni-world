@@ -90,7 +90,6 @@ export const userSignout = callback => dispatch => {
   });
 };
 
-
 export const checkIfUserIsSigned = () => dispatch => {
   dispatch({
     type: actionTypes.START_CHECK_USER_AUTHENTICATION,
@@ -115,28 +114,26 @@ export const checkIfUserIsSigned = () => dispatch => {
             payload: decodedToken,
           });
         }
+
+        // Refresh user token
+        http.get(`${userAPI}/refresh`).then(res => {
+          const { token: newToken } = res.data;
+          if (newToken) {
+            // Save token to storage
+            AsyncStorage.setItem(keys.storedJWTname, newToken).catch(() => {
+              console.log('Could not save token into async storage');
+            });
+
+            // Decode token to get user data
+            const refreshedDecodedToken = jwtDecode(newToken);
+
+            dispatch({
+              type: actionTypes.SET_CURRENT_USER,
+              payload: refreshedDecodedToken,
+            });
+          }
+        });
       }
-
-      // Refresh user token
-      http.get(`${userAPI}/refresh`).then(res => {
-        const { token: newToken } = res.data;
-        if (newToken) {
-          // Set Authorization header
-
-          // Save token to storage
-          AsyncStorage.setItem(keys.storedJWTname, newToken).catch(() => {
-            console.log('Could not save token into async storage');
-          });
-
-          // Decode token to get user data
-          const decodedToken = jwtDecode(newToken);
-
-          dispatch({
-            type: actionTypes.SET_CURRENT_USER,
-            payload: decodedToken,
-          });
-        }
-      });
     })
     .finally(() => {
       dispatch({
